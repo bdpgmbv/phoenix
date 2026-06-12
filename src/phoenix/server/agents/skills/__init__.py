@@ -6,6 +6,7 @@ from phoenix.server.agents.skills.annotate_spans import ANNOTATE_SPANS_SKILL
 from phoenix.server.agents.skills.datasets import DATASETS_SKILL
 from phoenix.server.agents.skills.debug_trace import DEBUG_TRACE_SKILL
 from phoenix.server.agents.skills.llm_evaluator_authoring import LLM_EVALUATOR_AUTHORING_SKILL
+from phoenix.server.agents.skills.phoenix_graphql import PHOENIX_GRAPHQL_SKILL
 from phoenix.server.agents.skills.playground import PLAYGROUND_SKILL
 
 
@@ -16,7 +17,7 @@ def build_skills(
     include_datasets: bool = False,
 ) -> list[Skill]:
     """Return the skills bundled with the assistant agent."""
-    skills = [DEBUG_TRACE_SKILL, ANNOTATE_SPANS_SKILL]
+    skills = [DEBUG_TRACE_SKILL, ANNOTATE_SPANS_SKILL, PHOENIX_GRAPHQL_SKILL]
     if include_playground:
         skills.append(PLAYGROUND_SKILL)
     if include_llm_evaluator_authoring:
@@ -24,6 +25,15 @@ def build_skills(
     if include_datasets:
         skills.append(DATASETS_SKILL)
     return skills
+
+
+def get_server_agent_skills() -> list[Skill]:
+    """Return the skills available to the server sub-agent.
+
+    The sub-agent answers data questions exclusively through GraphQL, so it
+    receives the GraphQL skill regardless of UI context.
+    """
+    return [PHOENIX_GRAPHQL_SKILL]
 
 
 def get_skills_for_contexts(contexts: ResolvedContexts) -> list[Skill]:
@@ -74,4 +84,9 @@ def get_skills(
     )
 
 
-__all__ = ["build_skills", "get_skills", "get_skills_for_contexts"]
+__all__ = [
+    "build_skills",
+    "get_server_agent_skills",
+    "get_skills",
+    "get_skills_for_contexts",
+]

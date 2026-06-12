@@ -2800,6 +2800,7 @@ async def test_available_agent_skills_base_catalog(
     names = [skill["name"] for skill in response.data["availableAgentSkills"]]
     assert "debug-trace" in names
     assert "annotate-spans" in names
+    assert "phoenix-graphql" in names
     assert "playground" not in names
     assert "llm-evaluator-authoring" not in names
     # progressive-disclosure header is populated
