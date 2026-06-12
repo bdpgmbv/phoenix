@@ -850,6 +850,12 @@ class TraceContext(TypedDict):
     otelTraceId: str
 
 
+class SessionContext(TypedDict):
+    type: Literal["session"]
+    projectNodeId: str
+    sessionNodeId: str
+
+
 class TraceNoteData(TypedDict):
     trace_id: str
     note: str
@@ -1513,6 +1519,7 @@ class ChatRegenerateMessage(TypedDict):
                 AppContext,
                 ProjectContext,
                 TraceContext,
+                SessionContext,
                 AgentSpanContext,
                 PlaygroundContext,
                 CodeEvaluatorContext,
@@ -1540,6 +1547,7 @@ class ChatSubmitMessage(TypedDict):
                 AppContext,
                 ProjectContext,
                 TraceContext,
+                SessionContext,
                 AgentSpanContext,
                 PlaygroundContext,
                 CodeEvaluatorContext,

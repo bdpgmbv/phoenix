@@ -7299,6 +7299,9 @@
             "$ref": "#/components/schemas/TraceContext"
           },
           {
+            "$ref": "#/components/schemas/SessionContext"
+          },
+          {
             "$ref": "#/components/schemas/AgentSpanContext"
           },
           {
@@ -7332,6 +7335,7 @@
             "llm_evaluator": "#/components/schemas/LlmEvaluatorContext",
             "playground": "#/components/schemas/PlaygroundContext",
             "project": "#/components/schemas/ProjectContext",
+            "session": "#/components/schemas/SessionContext",
             "span": "#/components/schemas/AgentSpanContext",
             "trace": "#/components/schemas/TraceContext",
             "web_access": "#/components/schemas/WebAccessContext"
@@ -15428,6 +15432,30 @@
           "otelTraceId"
         ],
         "title": "TraceContext"
+      },
+      "SessionContext": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "session",
+            "title": "Type"
+          },
+          "projectNodeId": {
+            "type": "string",
+            "title": "Projectnodeid"
+          },
+          "sessionNodeId": {
+            "type": "string",
+            "title": "Sessionnodeid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "projectNodeId",
+          "sessionNodeId"
+        ],
+        "title": "SessionContext"
       },
       "TraceData": {
         "properties": {
