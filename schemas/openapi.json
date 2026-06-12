@@ -13634,6 +13634,31 @@
         ],
         "title": "SessionAnnotationsResponseBody"
       },
+      "SessionContext": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "session",
+            "title": "Type"
+          },
+          "projectNodeId": {
+            "type": "string",
+            "title": "Projectnodeid"
+          },
+          "sessionNodeId": {
+            "type": "string",
+            "title": "Sessionnodeid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "projectNodeId",
+          "sessionNodeId"
+        ],
+        "title": "SessionContext",
+        "description": "Session the user is currently viewing."
+      },
       "SessionData": {
         "properties": {
           "id": {
@@ -15432,30 +15457,6 @@
           "otelTraceId"
         ],
         "title": "TraceContext"
-      },
-      "SessionContext": {
-        "properties": {
-          "type": {
-            "type": "string",
-            "const": "session",
-            "title": "Type"
-          },
-          "projectNodeId": {
-            "type": "string",
-            "title": "Projectnodeid"
-          },
-          "sessionNodeId": {
-            "type": "string",
-            "title": "Sessionnodeid"
-          }
-        },
-        "type": "object",
-        "required": [
-          "type",
-          "projectNodeId",
-          "sessionNodeId"
-        ],
-        "title": "SessionContext"
       },
       "TraceData": {
         "properties": {

@@ -332,6 +332,14 @@ class PlaygroundCustomProviderModelContext(TypedDict):
     modelName: str
 
 
+class PlaygroundEvaluatorContext(TypedDict):
+    datasetEvaluatorId: str
+    name: str
+    kind: Literal["LLM", "CODE", "BUILTIN"]
+    isBuiltin: bool
+    isApplied: bool
+
+
 class PlaygroundInstanceContext(TypedDict):
     instanceId: int
     model: NotRequired[Union[PlaygroundBuiltinModelContext, PlaygroundCustomProviderModelContext]]
@@ -629,6 +637,12 @@ class SessionAnnotationsResponseBody(TypedDict):
     next_cursor: Optional[str]
 
 
+class SessionContext(TypedDict):
+    type: Literal["session"]
+    projectNodeId: str
+    sessionNodeId: str
+
+
 class SessionNoteData(TypedDict):
     session_id: str
     note: str
@@ -848,12 +862,6 @@ class TraceContext(TypedDict):
     type: Literal["trace"]
     projectNodeId: str
     otelTraceId: str
-
-
-class SessionContext(TypedDict):
-    type: Literal["session"]
-    projectNodeId: str
-    sessionNodeId: str
 
 
 class TraceNoteData(TypedDict):
@@ -1245,6 +1253,7 @@ class PlaygroundContext(TypedDict):
     recordExperiments: NotRequired[bool]
     repetitions: NotRequired[int]
     instances: NotRequired[Sequence[PlaygroundInstanceContext]]
+    evaluators: NotRequired[Sequence[PlaygroundEvaluatorContext]]
 
 
 class PromptAnthropicInvocationParametersContent(TypedDict):
